@@ -9,13 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 const material = [
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatIconModule,
-  MatBadgeModule,
-  MatProgressSpinnerModule,
-  MatToolbarModule,
-  MatSidenavModule
+  MatButtonModule
 ]
 
 @NgModule({
