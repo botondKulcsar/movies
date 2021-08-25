@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const PostSchema = new mongoose.Schema({
+const ActorPostSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    movieId: {
+    actorId: {
         type: String,
         required: true
     },
@@ -16,4 +16,4 @@ const PostSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Post', PostSchema)
+module.exports = mongoose.model('ActorPost', ActorPostSchema);
