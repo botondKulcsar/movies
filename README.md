@@ -2,24 +2,24 @@
 
 # Szerver
 ## mongoDB Atlas 
-Userek adatai
-	- keresztnév
-	- vezetéknév
-	- város
-	- születési év
-	- avatar kép
-	- email cím
-	- becenév
-	- jelszó - hash-elve
-	- ismerőseim (id-k listája)
-	- ismerős jelöltek listája (id-k listája)
-	- filmkategóriák (checkbox lista: akció, sci-fi, rajzfilm, dráma, romkom, ....) *
-	- kedvenc filmek * 
-	- kedvenc színészek *
+Userek adatai:
+- keresztnév
+- vezetéknév
+- város
+- születési év
+- avatar kép
+- email cím
+- becenév
+- jelszó - hash-elve
+- ismerőseim (id-k listája)
+- ismerős jelöltek listája (id-k listája)
+- filmkategóriák (checkbox lista: akció, sci-fi, rajzfilm, dráma, romkom, ....) *
+- kedvenc filmek * 
+- kedvenc színészek *
 
 Postok - filmekhez
-	- adott filmhez hozzászólás/véleményezés lehetősége. 
-		  amint egy filmhez megszületik az első hozzászólás, létrerhozni egy új documentumot, a hozzászólás tárolja el a user id, film id, a hozzászólás maga, dátum - objectIdból.
+	adott filmhez hozzászólás/véleményezés lehetősége. 
+	amint egy filmhez megszületik az első hozzászólás, létrerhozni egy új documentumot, a hozzászólás tárolja el a user id, film id, a hozzászólás maga, dátum - objectIdból.
 Postok - színészekhez (opcionális)
 		- mint fent csak színészek ID-jával
 
