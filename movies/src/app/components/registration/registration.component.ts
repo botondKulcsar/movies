@@ -49,7 +49,7 @@ export class RegistrationComponent implements OnInit {
       {
         validators: [
           Validators.required,
-          Validators.minLength(5),
+          Validators.minLength(4),
           Validators.pattern(this.lettersOnlyPattern)
         ],
       }
