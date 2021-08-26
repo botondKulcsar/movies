@@ -158,15 +158,26 @@ export class RegistrationComponent implements OnInit {
 
       (data: any) => {
         this.userReg.reset();
-        this._snackBar.open(`Sikeres regisztáció`, 'OK', { duration: 3000 });
+        this._snackBar.open(
+          `Sikeres regisztáció`,
+          'OK',
+          { 
+            duration: 3000,
+            panelClass: ['snackbar-ok']
+          }
+        );
         this.login(user);
       },
 
       (err) => {
-        this._snackBar.open(`Hoppá, valami döcög a szerverkapcsolatban: \nSzerverválasz: ${err.error.message}: ${err.status}`,
-          'OK', {
-          duration: 5000
-        });
+        this._snackBar.open(
+          `Hoppá, valami döcög a szerverkapcsolatban: \nSzerverválasz: ${err.error.message}: ${err.status}`,
+          'OK', 
+          { 
+            duration: 5000,
+            panelClass: ['snackbar-error']
+          }
+        );
         console.log(err);
       },
 
