@@ -27,8 +27,7 @@ export class AuthService {
               localStorage.setItem('refreshToken', loginData.refreshToken);
               this.userLoggedInObject.next(
                 {
-                  username: loginData.nickName,
-                  user_id: loginData.userId,
+                  userId: loginData._id,
                   role: loginData.role
                 });
             }

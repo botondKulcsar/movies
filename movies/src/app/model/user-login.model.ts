@@ -1,5 +1,5 @@
 export class UserLogin {
-    nickName?: string;
-    password?: string;
+    email!: string;
+    password!: string;
     token?: string;
 }
