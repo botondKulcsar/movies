@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class HttpService {
 
-  constructor() { }
   BASE_URL = 'http://localhost:3000/'
+  
   constructor(private http: HttpClient) { }
 
   getMovies(): Observable<any> {
