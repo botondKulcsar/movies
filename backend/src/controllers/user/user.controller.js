@@ -74,8 +74,9 @@ exports.deleteOne = async (req, res, next) => {
         return next(new createError.Unauthorized('admin only'));
     }
     try {
-        const { deletedCount } = await userService.deleteOne(req.params.id);
-        if (!deletedCount) {
+        const result = await userService.deleteOne(req.params.id);
+        console.log(result);
+        if (!result) {
             return next(new createError.NotFound(`user id=${req.params.id} has not been found`))
         }
         res.status(200);
