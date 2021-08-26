@@ -17,4 +17,14 @@ export class HttpService {
   getOneMovie(id: number): Observable<any> {
     return this.http.get(`${this.BASE_URL}movies/${id}`)
   }
+  getPosts(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}posts`)
+  }
+  saveNewPost(post:any): Observable<any> {
+    return this.http.post(`${this.BASE_URL}posts`, post)
+  }
+
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}users`)
+  }
 }
