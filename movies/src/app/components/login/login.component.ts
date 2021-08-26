@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit {
   userObject: any;
 
   userLogin = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
     password: new FormControl('', [Validators.required]),
   });
 
@@ -47,15 +50,19 @@ export class LoginComponent implements OnInit {
       .subscribe(
         () => { },
         (err) => {
-          this._snackBar.open(`Hoppá, nem sikerült bejelentkezni! \n ${err.error.message}\nKód: ${err.status}`,
-            'OK', {
-            duration: 5000
-          });
+          this._snackBar.open(
+            `Hoppá, nem sikerült bejelentkezni! \n ${err.error.message}\nKód: ${err.status}`,
+            'OK',
+            {
+              duration: 5000,
+              panelClass: ['snackbar-error']
+            }
+          );
           console.error(err);
         },
         () => {
           this.userLogin.reset();
-          this._snackBar.open(`Sikeres belépés`, 'OK', { duration: 2000 });
+          this._snackBar.open(`Sikeres belépés`, 'OK', { duration: 2000, panelClass: ['snackbar-ok'] });
           this.router.navigate(['/']);
         }
       )
