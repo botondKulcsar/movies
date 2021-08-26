@@ -15,9 +15,10 @@ exports.register = async (req, res, next) => {
     }
     try {
         // check if email is not already in db
+        console.log(email);
         const emailIsTaken = await authService.findUser({ email });
         if (emailIsTaken) {
-            console.error(`Email is already registered`);
+            console.error(emailIsTaken);
             return next(new createError.BadRequest(`Email is already registered`))
         }
         password = await bcrypt.hash(password, saltRounds);
