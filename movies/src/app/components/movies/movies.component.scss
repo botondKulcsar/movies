@@ -1,0 +1,31 @@
+h4 {
+  font-weight: 700;
+}
+
+.genreRow {
+  display: flex;
+  flex-direction: row;
+}
+.movieRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.movieCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 10px;
+  max-width: 250px;
+  text-align: center;
+}
+
+.img-container {
+  height: 250px;
+  overflow: hidden;
+  img {
+    height: 100%;
+  }
+}
