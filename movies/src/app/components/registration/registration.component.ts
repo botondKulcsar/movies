@@ -163,7 +163,7 @@ export class RegistrationComponent implements OnInit {
       },
 
       (err) => {
-        this._snackBar.open(`Hoppá, valami döcög a szerverkapcsolatban: \nSzerverválasz: ${err.statusText}: ${err.status}`,
+        this._snackBar.open(`Hoppá, valami döcög a szerverkapcsolatban: \nSzerverválasz: ${err.error.message}: ${err.status}`,
           'OK', {
           duration: 5000
         });
