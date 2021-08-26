@@ -15,7 +15,7 @@ exports.register = async (req, res, next) => {
     }
     try {
         // check if email is not already in db
-        const emailIsTaken = await authService.findUser({ email: email });
+        const emailIsTaken = await authService.findUser({ email });
         if (emailIsTaken) {
             console.error(emailIsTaken);
             return next(new createError.BadRequest(`Email is already registered`))

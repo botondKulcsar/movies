@@ -64,3 +64,24 @@ exports.updateOne = async (req, res, next) => {
     }
 }
 
+exports.deleteOne = async (req, res, next) => {
+    // check if id is a valid mongoose objectId
+    if (!isValidObjectId(req.params.id)) {
+        return next(new createError.BadRequest('invalid id'))
+    }
+     // check if not admin
+     if (req.userRole !== 'admin') {
+        return next(new createError.Unauthorized('admin only'));
+    }
+    try {
+        const { deletedCount } = await userService.deleteOne(req.params.id);
+        if (!deletedCount) {
+            return next(new createError.NotFound(`user id=${req.params.id} has not been found`))
+        }
+        res.status(200);
+        return res.json({});
+    } catch (error) {
+        console.log(error.message);
+        return next(new createError.InternalServerError(error.message));
+    }
+}
