@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
+const idValidator = require('mongoose-id-validator');
 
 const UserSchema = new mongoose.Schema({
+    role: {
+        type: String,
+        enum: ['user','admin'],
+        default: 'user'
+    },
     firstName: {
         type: String,
         required: true
@@ -23,7 +29,7 @@ const UserSchema = new mongoose.Schema({
     },
     avatarURL: {
         type: String,
-        required: true
+        default: 'https://upload.wikimedia.org/wikipedia/commons/5/59/User-avatar.svg'
     },
     email: {
         type: String,
@@ -61,5 +67,7 @@ const UserSchema = new mongoose.Schema({
         }
     ]
 }, { timestamps: true });
+
+UserSchema.plugin(idValidator);
 
 module.exports = mongoose.model('User', UserSchema);

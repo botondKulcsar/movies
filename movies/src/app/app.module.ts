@@ -21,6 +21,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MyProfileComponent,
     LoginComponent,
     RegistrationComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PostsComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

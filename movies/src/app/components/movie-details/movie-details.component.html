@@ -1,6 +1,6 @@
-<div class="">
+<div class="" *ngIf="selectedMovie">
   <a routerLink="/movies">Vissza a filmek listájához</a>
-  <h3>{{selectedMovie.Title}}</h3>
+  <h3 >{{selectedMovie.Title}}</h3>
   <div class="film-container">
 
     <div class="img-container">
@@ -30,5 +30,7 @@
   </div>
 
 </div>
+<app-posts [selectedMovie]="selectedMovie"></app-posts>
+<app-post-form [selectedMovie]="selectedMovie" (savedNewPost)="newPost()"></app-post-form>
 
 

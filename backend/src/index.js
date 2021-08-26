@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3000;
 
 // db connection
 const connectionURL = `${process.env.DBTYPE}://${process.env.DBUSER}:${process.env.DBPASS}@${process.env.DBHOST}`;
-console.log(connectionURL);
 mongoose
     .connect(connectionURL, {
     useNewUrlParser: true,

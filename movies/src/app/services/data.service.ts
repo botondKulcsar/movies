@@ -6,5 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DataService {
   selectedMovie: BehaviorSubject<any> = new BehaviorSubject<any>(null)
+  savedNewPost: BehaviorSubject<any> = new BehaviorSubject<any>(null)
   constructor() { }
 }

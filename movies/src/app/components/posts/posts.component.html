@@ -1,0 +1,9 @@
+
+<ul>
+  <li *ngFor="let post of postList" [ngStyle]="post.filmId ==selectedMovie.id ? {'display': 'block'} : {'display': 'none' }">
+     <div *ngFor="let user of userList" [ngStyle]="user.id == post.userId ? {'display': 'block'} : {'display': 'none' }">
+      <h3>{{user.username}}</h3>
+     </div>
+    <p>{{post.post}}</p>
+  </li>
+</ul>
