@@ -134,14 +134,14 @@ exports.logout = async (req, res, next) => {
         // we delete the refreshToken from the DB
         const { deletedCount } = await authService.deleteToken(refreshToken);
         if (!deletedCount) {
-            throw new Error('already logged out')
+            throw new Error('already logged out or token not found in DB')
         } 
         console.log('token found and deleted from DB');
         res.status(200);
         return res.json({});
     } catch (error) {
-        if ((error.message = "already logged out")) {
-            return next(new createError.Unauthorized("already logged out"));
+        if ((error.message === "already logged out or token not found in DB")) {
+            return next(new createError.Unauthorized("already logged out or token not found in DB"));
           }
           return next(new createError.InternalServerError(error.message));
     }
