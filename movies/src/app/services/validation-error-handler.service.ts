@@ -39,11 +39,11 @@ export class ValidationErrorHandlerService {
     if (formName.get(field)?.hasError('minlength') || formName.get(field)?.hasError('maxlength')) {
       switch (field) {
         case 'nickName':
-          return 'minimum 2 karaktert szükséges megadni';
+          return 'minimum 4 karaktert szükséges megadni';
         case 'firstName':
-          return 'minimum 5 karaktert szükséges megadni';
+          return 'minimum 2 karaktert szükséges megadni';
         case 'lastName':
-          return 'minimum 5 karaktert szükséges megadni';
+          return 'minimum 2 karaktert szükséges megadni';
         case 'city':
           return 'minimum 3 karaktert szükséges megadni';
         case 'password':
