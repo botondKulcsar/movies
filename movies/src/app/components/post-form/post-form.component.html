@@ -1,0 +1,7 @@
+<div class="">
+  <form [formGroup]="postForm" (ngSubmit)="savePost()">
+    <label for="post">Hozzászólás:</label>
+    <textarea id="post" cols="30" rows="10" formControlName="post"></textarea>
+    <button>Hozzászólás mentése</button>
+  </form>
+</div>

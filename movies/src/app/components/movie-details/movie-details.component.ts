@@ -8,6 +8,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class MovieDetailsComponent implements OnInit {
   selectedMovie: any;
+
+
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
@@ -16,5 +18,7 @@ export class MovieDetailsComponent implements OnInit {
       error => console.error(error)
     )
   }
-
+  newPost() {
+    this.selectedMovie = this.selectedMovie
+  }
 }
