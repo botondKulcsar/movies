@@ -1,1 +1,31 @@
-<p>movies works!</p>
+
+<div class="">
+  <form [formGroup]="formGenre" (ngSubmit)="selectGenre()">
+    <label for="category">Kategória</label>
+    <select id="category" formControlName="category">
+      <option value="">Összes kategória</option>
+        <option *ngFor="let genre of this.genreList" [value]="genre.value">
+          {{genre.name}}
+        </option>
+      </select>
+      <button type="submit">Kiválaszt</button>
+  </form>
+</div>
+
+
+<div *ngFor="let genre of filteredGenreList">
+  <h4>{{genre.name}}</h4>
+  <div class="genreRow">
+    <div *ngFor="let movie of movies" class="movieRow">
+      <div class="movieCard" (click)="selectFilm(movie)"
+      [ngStyle]="movie.Genre == genre.value ? {'display': 'block'} : {'display': 'none' }">
+        <div class="img-container">
+          <img [src]="movie.Poster">
+        </div>
+        <p>{{movie.Title}} | {{movie.Year}}</p>
+
+
+      </div>
+    </div>
+  </div>
+

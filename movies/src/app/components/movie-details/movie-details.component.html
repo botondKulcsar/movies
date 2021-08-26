@@ -1,1 +1,34 @@
-<p>movie-details works!</p>
+<div class="">
+  <a routerLink="/movies">Vissza a filmek listájához</a>
+  <h3>{{selectedMovie.Title}}</h3>
+  <div class="film-container">
+
+    <div class="img-container">
+      <img src={{selectedMovie.Poster}} alt="">
+    </div>
+    <div class="">
+      <p>Year: {{selectedMovie.Year}}</p>
+      <p>Rated: {{selectedMovie.Rated}}</p>
+      <p>Released: {{selectedMovie.Released}}</p>
+      <p>Runtime: {{selectedMovie.Runtime}}</p>
+      <p>Genre: {{selectedMovie.Genre}}</p>
+      <p>Director: {{selectedMovie.Director}}</p>
+      <p>Writer: {{selectedMovie.Writer}}</p>
+      <p>Actors: {{selectedMovie.Actors}}</p>
+      <p>Plot: {{selectedMovie.Plot}}</p>
+      <p>Language: {{selectedMovie.Language}}</p>
+      <p>Country: {{selectedMovie.Country}}</p>
+      <p>Avards: {{selectedMovie.Avards}}</p>
+      <p>Ratings: </p>
+      <ul>
+        <li class="" *ngFor="let rating of selectedMovie.Ratings">
+          {{rating.Source}}: {{rating.Value}}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+</div>
+
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-details.component.scss']
 })
 export class MovieDetailsComponent implements OnInit {
-
-  constructor() { }
+  selectedMovie: any;
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.selectedMovie.subscribe(
+      (data:any) => this.selectedMovie = data,
+      error => console.error(error)
+    )
   }
 
 }
