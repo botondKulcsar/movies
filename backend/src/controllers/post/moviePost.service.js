@@ -14,4 +14,4 @@ exports.getPostsByUserOrMovieId = (query=null) => MoviePost.find(query);
 
 exports.deleteOne = (id) => MoviePost.findByIdAndRemove(id);
 
-exports.updateOne = (id) => MoviePost.findByIdAndUpdate(id);
+exports.updateOne = (id, payload) => MoviePost.findByIdAndUpdate(id, payload, { new: true });

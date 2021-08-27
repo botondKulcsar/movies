@@ -1,5 +1,6 @@
 const moviePostService = require('./moviePost.service');
-const createError = require('http-errors')
+const createError = require('http-errors');
+const isValidObjectId = require('../../config/objectIdChecker');
 
 exports.createMoviePost = async (req, res, next) => {
     try {
@@ -57,5 +58,44 @@ exports.getPostsByMovieOrUserId = async (req, res, next) => {
     } catch (error) {
         console.error(error.message);
         return next(new createError.InternalServerError(error.message));
+    }
+}
+
+exports.updateMoviePost = async (req, res, next) => {
+    // check if id is a valid mongoose objectId
+    if (!isValidObjectId(req.params.id)) {
+        return next(new createError.BadRequest('invalid id'))
+    }
+    if (!req.body.content) {
+        return next(new createError.BadRequest('content is empty. try deleting the post'))
+    }
+    try {
+        const updatedPost = await moviePostService.updateOne(req.params.id, req.body);
+        if (!updatedPost) {
+            return next(new createError.NotFound(`a post with id=${req.params.id} has not been found`));
+        }
+        res.status(200);
+        return res.json(updatedPost);
+    } catch (error) {
+        console.log(error.message);
+        return next(new createError.InternalServerError(error.message))
+    }
+}
+
+exports.deleteMoviePost = async (req, res, next) => {
+    // check if id is a valid mongoose objectId
+    if (!isValidObjectId(req.params.id)) {
+        return next(new createError.BadRequest('invalid id'))
+    }
+    try {
+        deleteSuccessful = await moviePostService.deleteOne(req.params.id);
+        if (!deleteSuccessful) {
+            return next(new createError.NotFound(`a post with id=${req.params.id} has not been found`));
+        }
+        res.status(200);
+        res.json({})
+    } catch (error) {
+        console.log(error.message);
+        return next(new createError.InternalServerError(error.message))
     }
 }

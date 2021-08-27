@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/api/', authRouter);
 
 app.use('/api/users', authenticationByJWT, userRouter);
-app.use('/api/movie-posts', authenticationByJWT, moviePostRouter);
+app.use('/api/movie-posts', moviePostRouter);
 
 app.use((err, req, res, next) => {
     console.error(`ERROR ${err.statusCode}: ${err.message}`)
