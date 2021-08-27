@@ -1,6 +1,6 @@
 const moviePostService = require('./moviePost.service');
 const createError = require('http-errors');
-const isValidObjectId = require('../../config/objectIdChecker');
+const { isValidObjectId } = require('../../config/objectIdChecker');
 
 exports.createMoviePost = async (req, res, next) => {
     try {
@@ -26,7 +26,6 @@ exports.createMoviePost = async (req, res, next) => {
 
 exports.getPostsByMovieOrUserId = async (req, res, next) => {
     try {
-        console.log(req.userRole);
         const { userId, movieId } = req.body;
         if (!userId && !movieId && req.userRole !== 'admin') {
             return next(new createError.BadRequest('request body is missing required field(s)'));
