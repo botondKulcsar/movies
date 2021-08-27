@@ -116,10 +116,10 @@ exports.refresh = async (req, res, next) => {
         res.status(200);
         res.json({ accessToken });
     } catch (error) {
-        if (err.message === 'jwt expired') {
-            return next(new createError.Forbidden(err.message))
+        if (error.message === 'jwt expired') {
+            return next(new createError.Forbidden(error.message))
         }
-        return next(new createError.InternalServerError(err.message));
+        return next(new createError.InternalServerError(error.message));
     }
 };
 // user logs out
