@@ -1,7 +1,6 @@
 export class UserLoggedIn {
     accessToken: string = '';
     refreshToken: string = '';
-    nickName: string = '';
-    userId: string = '';
+    _id: string = '';
     role: string = '';
 }

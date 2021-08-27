@@ -19,7 +19,7 @@ exports.create = async (userData) => {
 
 exports.findUser = async (query) => {
     try {
-        const user = await User.findOne({ query });
+        const user = await User.findOne( query );
         return user;
     } catch (error) {
         console.error(error.message);
