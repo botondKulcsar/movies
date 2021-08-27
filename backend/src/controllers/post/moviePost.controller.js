@@ -28,7 +28,7 @@ exports.getPostsByMovieOrUserId = async (req, res, next) => {
     try {
         console.log(req.userRole);
         const { userId, movieId } = req.body;
-        if (!userId && !movieId && req.userRole === 'user') {
+        if (!userId && !movieId && req.userRole !== 'admin') {
             return next(new createError.BadRequest('request body is missing required field(s)'));
         }
         if (!userId && !movieId && req.userRole === 'admin') {
