@@ -1,31 +1,47 @@
-
 <div class="">
   <form [formGroup]="formGenre" (ngSubmit)="selectGenre()">
     <label for="category">Kategória</label>
     <select id="category" formControlName="category">
       <option value="">Összes kategória</option>
-        <option *ngFor="let genre of this.genreList" [value]="genre.value">
-          {{genre.name}}
-        </option>
-      </select>
-      <button type="submit">Kiválaszt</button>
+      <option *ngFor="let genre of this.genreList" [value]="genre.value">
+        {{genre.name}}
+      </option>
+    </select>
+    <button type="submit">Kiválaszt</button>
   </form>
 </div>
 
 
 <div *ngFor="let genre of filteredGenreList">
-  <h4>{{genre.name}}</h4>
+  <h4 (click)="SelectKecsOhajaSzerint(genre.value)">{{genre.name}}</h4>
   <div class="genreRow">
-    <div *ngFor="let movie of movies" class="movieRow">
-      <div class="movieCard" (click)="selectFilm(movie)"
-      [ngStyle]="movie.Genre == genre.value ? {'display': 'block'} : {'display': 'none' }">
-        <div class="img-container">
-          <img [src]="movie.Poster">
-        </div>
-        <p>{{movie.Title}} | {{movie.Year}}</p>
+    <div *ngFor="let movie of dataSource.data" class="movieRow">
+      <div aTilt [tiltSettings]="{ 'max': 20, 'speed': 400}" class="card rgb"
+        [ngStyle]="movie.Genre == genre.value ? {'display': 'block'} : {'display': 'none' }"
+        (click)="selectFilm(movie)">
+        <div class="card__front">
+          <div aTilt [tiltSettings]="{ 'max': 0, 'speed': 400, 'glare': true, 'max-glare': 0.5 }" class="card-image"
+            [ngStyle]="{'background':'linear-gradient(#fff0 0%, #fff0 40%, #1d1d1d 70%, #1d1d1d 100%), url('+ movie.Poster +')  center top no-repeat', 'background-size': 'cover', 'broder-top-left-radius': '1rem', 'broder-top-right-radius': '1rem', 'background-color': '#555555'}">
+            <!-- <img mat-card-image [src]="movie.Poster" > -->
+          </div>
+          <div class="card-text">
+            <h4>{{movie.Title}}</h4>
+            <p>{{movie.Year}}</p>
+          </div>
+          <div class="card-stats">
+            <ul>
+              <li>
+                {{movie.Ratings[0].Source}}: {{movie.Ratings[0].Value}}
+              </li>
+            </ul>
 
+          </div>
+
+        </div>
 
       </div>
+
     </div>
   </div>
-
+  <mat-paginator class="" [pageSizeOptions]="pageSizes" showFirstLastButtons></mat-paginator>
+</div>
