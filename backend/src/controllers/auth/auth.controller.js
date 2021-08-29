@@ -15,9 +15,9 @@ exports.register = async (req, res, next) => {
     }
     try {
         // check if email is not already in db
-        const emailIsTaken = await authService.findUser({ email: email });
+        const emailIsTaken = await authService.findUser({ email });
         if (emailIsTaken) {
-            console.error(`Email is already registered`);
+            console.error(emailIsTaken);
             return next(new createError.BadRequest(`Email is already registered`))
         }
         password = await bcrypt.hash(password, saltRounds);
@@ -116,10 +116,10 @@ exports.refresh = async (req, res, next) => {
         res.status(200);
         res.json({ accessToken });
     } catch (error) {
-        if (err.message === 'jwt expired') {
-            return next(new createError.Forbidden(err.message))
+        if (error.message === 'jwt expired') {
+            return next(new createError.Forbidden(error.message))
         }
-        return next(new createError.InternalServerError(err.message));
+        return next(new createError.InternalServerError(error.message));
     }
 };
 // user logs out

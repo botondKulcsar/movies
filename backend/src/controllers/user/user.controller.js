@@ -10,7 +10,7 @@ exports.getAll = async (req, res, next) => {
     try {
         const userList = await userService.findAll();
         res.status(200);
-        res.json(userList);
+        return res.json(userList);
     } catch (error) {
         return next(new createError.InternalServerError(err.message))
     }
@@ -31,7 +31,7 @@ exports.getOne = async (req, res, next) => {
             return next(new createError.NotFound(`user id=${req.params.id} has not been found`))
         }
         res.status(200);
-        res.json(user);
+        return res.json(user);
     } catch (error) {
         console.log(error.message);
         return next(new createError.InternalServerError(error.message)); 
@@ -48,9 +48,41 @@ exports.updateOne = async (req, res, next) => {
         return next(new createError.Unauthorized('admin only or unauthenticated'));
     }
     try {
-        
+        // check if the password is to be updated
+        if (req.body.password) {
+            req.body.password = await bcrypt.hash(req.body.password, saltRounds);
+        }
+        const updatedUser = await userService.updateOne(req.params.id, req.body);
+        if (!updatedUser) {
+            return next(new createError.NotFound(`user id=${req.params.id} has not been found`))
+        }
+        res.status(200);
+        return res.json(updatedUser);
     } catch (error) {
-        
+        console.log(error.message);
+        return next(new createError.InternalServerError(error.message));
     }
 }
 
+exports.deleteOne = async (req, res, next) => {
+    // check if id is a valid mongoose objectId
+    if (!isValidObjectId(req.params.id)) {
+        return next(new createError.BadRequest('invalid id'))
+    }
+     // check if not admin
+     if (req.userRole !== 'admin') {
+        return next(new createError.Unauthorized('admin only'));
+    }
+    try {
+        const result = await userService.deleteOne(req.params.id);
+        console.log(result);
+        if (!result) {
+            return next(new createError.NotFound(`user id=${req.params.id} has not been found`))
+        }
+        res.status(200);
+        return res.json({});
+    } catch (error) {
+        console.log(error.message);
+        return next(new createError.InternalServerError(error.message));
+    }
+}

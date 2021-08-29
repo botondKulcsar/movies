@@ -6,4 +6,8 @@ router.get('/', adminOnly, (req, res, next) => userController.getAll(req, res, n
 
 router.get('/:id', (req, res, next) => userController.getOne(req, res, next));
 
+router.patch('/:id', (req, res, next) => userController.updateOne(req, res, next));
+
+router.delete('/:id', adminOnly, (req, res, next) => userController.deleteOne(req, res, next));
+
 module.exports = router;

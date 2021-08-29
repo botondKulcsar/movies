@@ -23,6 +23,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { AngularTiltModule } from 'angular-tilt';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularTiltModule
 
   ],
   providers: [],

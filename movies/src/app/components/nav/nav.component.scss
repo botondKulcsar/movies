@@ -12,8 +12,8 @@ mat-sidenav-content {
 }
 
 a[mat-button] {
-  color: rgb(200,200,200);
+  color: grey;
   &.active {
-    color: white
+    color: black
   }
 }
