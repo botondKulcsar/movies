@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ export class ValidationErrorHandlerService {
   constructor() { }
 
   getErrorMessage(formName: FormGroup, field: string) {
+
+    console.log(formName)   // debug
 
     if (formName.get(field)?.hasError('required')) {
       return 'Kötelezően kitöltendő mező';
@@ -62,6 +64,10 @@ export class ValidationErrorHandlerService {
 
     if (formName.get(field)?.hasError('email')) {
       return 'valós email cím megadása szükséges';
+    }
+
+    if (formName.get(field)?.hasError('match')) {
+      return 'a megadott jelszavaknak egyezniük kell';
     }
 
     return 'egyéb validációs hiba';
