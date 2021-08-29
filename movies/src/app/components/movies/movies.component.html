@@ -12,10 +12,13 @@
 </div>
 
 
-<div *ngFor="let genre of filteredGenreList">
-  <h4 (click)="SelectKecsOhajaSzerint(genre.value)">{{genre.name}}</h4>
-  <div class="genreRow">
-    <div *ngFor="let movie of dataSource.data" class="movieRow">
+<div *ngFor="let genre of filteredGenreList" >
+  <h4 (click)="SelectKecsOhajaSzerint(genre.value)" >{{genre.name}}</h4>
+  <div class="rowWrapper">
+    <div class="left" (click)="scrollLeft()"></div>
+    <div class="right" (click)="scrollRight()"></div>
+  <div class="genreRow" #widgetsContent>
+    <div *ngFor="let movie of dataSource.data" class="movieRow" >
       <div aTilt [tiltSettings]="{ 'max': 20, 'speed': 400}" class="card rgb"
         [ngStyle]="movie.Genre == genre.value ? {'display': 'block'} : {'display': 'none' }"
         (click)="selectFilm(movie)">
@@ -43,5 +46,6 @@
 
     </div>
   </div>
+</div>
   <mat-paginator class="" [pageSizeOptions]="pageSizes" showFirstLastButtons></mat-paginator>
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -28,6 +28,9 @@ export class MoviesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   dataSubscription!: Subscription;
+
+  @ViewChild('widgetsContent', { read: ElementRef })
+  widgetsContent!: ElementRef<any>;
   constructor(
     private configService: ConfigService,
     private httpService: HttpService,
@@ -55,6 +58,17 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
 
 
+
+  }
+  scrollRight() {
+    //this.widgetsContent.nativeElement.scrollLeft += this.widgetsContent.nativeElement.scrollWidth;
+
+    this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft += 150), behavior: 'smooth' });
+  }
+
+  scrollLeft() {
+    //this.widgetsContent.nativeElement.scrollLeft -= this.widgetsContent.nativeElement.scrollWidth;
+    this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft -= 150), behavior: 'smooth' });
   }
 
 

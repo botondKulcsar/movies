@@ -1,12 +1,44 @@
+.rowWrapper {
+  position: relative;
+}
+.left {
+  content: 'Left';
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: red;
+  cursor: pointer;
+}
+.right {
+  content: 'Right';
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-color: red;
+  cursor: pointer;
+}
 .genreRow {
   display: flex;
   flex-direction: row;
+  overflow-x: scroll;
+  position: relative;
+
+}
+.genreRow::-webkit-scrollbar {
+  display: none;
 }
 .movieRow {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+
 }
 
 .card {
