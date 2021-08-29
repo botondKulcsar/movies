@@ -34,7 +34,7 @@ const material = [
   MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule,
-  MatTableModule
+  MatTableModule,
 
 ]
 
