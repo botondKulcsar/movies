@@ -7,7 +7,7 @@ import { UserLogin } from 'src/app/model/user-login.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ValidationErrorHandlerService } from 'src/app/services/validation-error-handler.service';
-import { MatchValidator } from 'src/app/validators/password-match.validator';
+import { MatchValidator } from 'src/app/validators/match.validator';
 
 @Component({
   selector: 'app-registration',
@@ -94,8 +94,7 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(32),
-          // this.matchValidator(),
-          // MatchValidator()
+          MatchValidator('password', 'passCheck')
         ]
       }
     ),
@@ -105,13 +104,12 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(32),
-          // this.matchValidator()
-          // MatchValidator()
+          MatchValidator('password', 'passCheck')
         ]
       }
     ),
   },
-    // { validators: this.matchValidator() }
+  {}
   );
 
   get firstName() {
@@ -216,23 +214,6 @@ export class RegistrationComponent implements OnInit {
 
   getErrorMessage(formName: FormGroup, formControlName: string) {
     return this.validErrorHandler.getErrorMessage(formName, formControlName);
-  }
-
-  // matchValidator(control: AbstractControl): ValidationErrors | null {
-  //   const pass = control.get('password')?.value;
-  //   const confirmPass = control.get('passCheck')?.value;
-
-  //   return pass === confirmPass ? null : { notSame: true };
-  // }
-
-  matchValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const pass = control.get('password')?.value;
-      const confirmPass = control.get('passCheck')?.value;
-      console.log('Passwords in reg component: ', pass, confirmPass);    // debug
-      console.log('control in reg component: ', control);    // debug
-      return (pass !== confirmPass) ? { notSame: true } : null;
-    }
   }
 
 }
