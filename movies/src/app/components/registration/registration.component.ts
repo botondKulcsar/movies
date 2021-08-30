@@ -7,7 +7,8 @@ import { UserLogin } from 'src/app/model/user-login.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ValidationErrorHandlerService } from 'src/app/services/validation-error-handler.service';
-import { MatchValidator } from 'src/app/validators/match.validator';
+import { matchValidator } from 'src/app/validators/match.validator';
+import { passwordStrengthValidator } from 'src/app/validators/password-strength.validator';
 
 @Component({
   selector: 'app-registration',
@@ -94,7 +95,8 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(32),
-          MatchValidator('password', 'passCheck')
+          passwordStrengthValidator(),
+          matchValidator('password', 'passCheck')
         ]
       }
     ),
@@ -104,7 +106,8 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(32),
-          MatchValidator('password', 'passCheck')
+          passwordStrengthValidator(),
+          matchValidator('password', 'passCheck')
         ]
       }
     ),

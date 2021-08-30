@@ -13,18 +13,18 @@ import { UsersComponent } from './components/users/users.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
 const routes: Routes = [
-  {path: '', component:WelcomeComponent},
-  {path: 'actors', component:ActorsComponent},
-  {path: 'actor-details/:id', component:ActorDetailsComponent},
-  {path: 'admin', component:AdminComponent},
-  {path: 'login', component:LoginComponent},
-  {path: 'movies', component:MoviesComponent},
-  {path: 'movie-details/:id', component:MovieDetailsComponent},
-  {path: 'my-profile', component:MyProfileComponent},
-  {path: 'registration', component:RegistrationComponent},
-  {path: 'users', component:UsersComponent},
-  {path: 'user-profile/:id', component:UserProfileComponent},
-  {path: '**', redirectTo: ''},
+  { path: '', component: WelcomeComponent },
+  { path: 'actors', component: ActorsComponent },
+  { path: 'actor-details/:id', component: ActorDetailsComponent },
+  { path: 'admin', component: AdminComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'movies', component: MoviesComponent },
+  { path: 'movie-details/:id', component: MovieDetailsComponent },
+  { path: 'my-profile', component: MyProfileComponent },
+  { path: 'registration', component: RegistrationComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'user-profile/:id', component: UserProfileComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
