@@ -67,8 +67,11 @@ export class ValidationErrorHandlerService {
     }
 
     if (formName.get(field)?.hasError('match')) {
-      console.log('Errorhandler at match: ', field); // debug
       return 'a megadott jelszavaknak egyezniük kell';
+    }
+
+    if (formName.get(field)?.hasError('passwordStrength')) {
+      return 'kisbetűt, nagybetűt és számot kötelező tartalmaznia';
     }
 
     return 'egyéb validációs hiba';

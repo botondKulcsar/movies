@@ -8,6 +8,7 @@ import { Film } from 'src/app/model/film';
 import { ConfigService } from 'src/app/services/config.service';
 import { DataService } from 'src/app/services/data.service';
 import { HttpService } from 'src/app/services/http.service';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -19,8 +20,10 @@ export class MoviesComponent implements OnInit, OnDestroy {
   movies: any[] = []
   genreList: {value: string, name: string}[] = this.configService.genre
   filteredGenreList: {value: string, name: string}[] = this.configService.genre
+  filteredMovies: any[] = []; 
   formGenre: FormGroup;
-  pageSizes: number[] = [2,3,5];
+
+
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(this.movies);
   obs!: Observable<any>;
   // dataSubscription: Subscription;
@@ -28,6 +31,13 @@ export class MoviesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   dataSubscription!: Subscription;
+
+  // pageSizes: number[] = [2];
+  pageSize: number = 2;
+  lengths: number[] = [];
+  pageIndexes: number[] = [0, 0, 0];
+  pageSizeOptions = [2, 3, 5, 10, 25];
+  showFirstLastButtons = true;
 
   @ViewChild('widgetsContent', { read: ElementRef })
   widgetsContent!: ElementRef<any>;
@@ -49,8 +59,10 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.httpService.getMovies().subscribe(
       (data:any) => {
         // this.movies = data;
-        this.dataSource.data = data
-
+        this.dataSource.data = data;
+        
+        console.log('DataSource: ', this.dataSource.data);  // debug
+        console.log('filteredGenreList: ', this.filteredGenreList); // debug
       },
       error => console.error(error)
     )
@@ -95,4 +107,9 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.dataSubscription.unsubscribe()
   }
 
+  handlePageEvent(event: PageEvent, i: number, j?: number) {
+    this.lengths[i] = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndexes[i] = event.pageIndex;
+  }
 }

@@ -5,7 +5,7 @@
 
             <h2>regisztráció</h2>
 
-            <mat-form-field appearance="standard">
+            <!-- <mat-form-field appearance="standard">
                 <mat-label>vezetéknév</mat-label>
                 <input matInput placeholder="vezetéknév" formControlName="lastName" required>
                 <mat-error *ngIf="lastName.invalid 
@@ -15,9 +15,9 @@
                     )">
                     {{getErrorMessage(userReg, "lastName")}}
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
-            <mat-form-field appearance="standard">
+            <!-- <mat-form-field appearance="standard">
                 <mat-label>keresztnév</mat-label>
                 <input matInput placeholder="keresztnév" formControlName="firstName" required>
                 <mat-error *ngIf="firstName.invalid 
@@ -27,7 +27,7 @@
                     )">
                     {{getErrorMessage(userReg, "firstName")}}
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <mat-form-field appearance="standard">
                 <mat-label>felhasználónév</mat-label>
@@ -85,7 +85,7 @@
                 </button>
             </mat-form-field>
 
-            <mat-form-field appearance="standard">
+            <!-- <mat-form-field appearance="standard">
                 <mat-label>város</mat-label>
                 <input matInput placeholder="város" formControlName="city" required>
                 <mat-error *ngIf="city.invalid 
@@ -95,9 +95,9 @@
                                 )">
                     {{getErrorMessage(userReg, "city")}}
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
-            <mat-form-field appearance="standard">
+            <!-- <mat-form-field appearance="standard">
                 <mat-label>születési év</mat-label>
                 <input type="year" matInput placeholder="születési év" formControlName="yearOfBirth" required>
                 <mat-error *ngIf="yearOfBirth.invalid 
@@ -107,9 +107,9 @@
                                 )">
                     {{getErrorMessage(userReg, "yearOfBirth")}}
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
-            <mat-form-field appearance="standard">
+            <!-- <mat-form-field appearance="standard">
                 <mat-label>avatar linkje</mat-label>
                 <input type="url" matInput placeholder="avatar linkje" formControlName="avatarUrl">
                 <mat-error *ngIf="avatarUrl.invalid 
@@ -119,7 +119,7 @@
                                 )">
                     {{getErrorMessage(userReg, "avatarUrl")}}
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <div>
                 <button class="submit-button" [disabled]="userReg.invalid" mat-raised-button

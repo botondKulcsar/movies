@@ -3,7 +3,7 @@
     <label for="category">Kategória</label>
     <select id="category" formControlName="category">
       <option value="">Összes kategória</option>
-      <option *ngFor="let genre of this.genreList" [value]="genre.value">
+      <option *ngFor="let genre of genreList" [value]="genre.value">
         {{genre.name}}
       </option>
     </select>
@@ -12,13 +12,13 @@
 </div>
 
 
-<div *ngFor="let genre of filteredGenreList" >
+<div *ngFor="let genre of filteredGenreList; index as i" >
   <h4 (click)="SelectKecsOhajaSzerint(genre.value)" >{{genre.name}}</h4>
   <div class="rowWrapper">
     <div class="left" (click)="scrollLeft()"></div>
     <div class="right" (click)="scrollRight()"></div>
   <div class="genreRow" #widgetsContent>
-    <div *ngFor="let movie of dataSource.data" class="movieRow" >
+    <div *ngFor="let movie of dataSource.data; index as j" class="movieRow" >
       <div aTilt [tiltSettings]="{ 'max': 20, 'speed': 400}" class="card rgb"
         [ngStyle]="movie.Genre == genre.value ? {'display': 'block'} : {'display': 'none' }"
         (click)="selectFilm(movie)">
@@ -47,5 +47,9 @@
     </div>
   </div>
 </div>
-  <mat-paginator class="" [pageSizeOptions]="pageSizes" showFirstLastButtons></mat-paginator>
+  <!-- <mat-paginator class="" [pageSizeOptions]="pageSizes" showFirstLastButtons></mat-paginator> -->
+  <mat-paginator (page)="handlePageEvent($event, i)" [length]="lengths[i]" [pageSize]="pageSize"
+    [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndexes[i]"
+    aria-label="Select page">
+  </mat-paginator>
 </div>

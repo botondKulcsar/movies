@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export function MatchValidator(name1: string, name2: string): ValidatorFn {
+export function matchValidator(name1: string, name2: string): ValidatorFn {
 
     return (control: AbstractControl): ValidationErrors | null => {
 
