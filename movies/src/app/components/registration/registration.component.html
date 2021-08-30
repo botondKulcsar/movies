@@ -1,9 +1,9 @@
-<section>
+<section class="form-container">
 
-    <form class="container" [formGroup]="userReg" (ngSubmit)="regUser(userReg.value)">
+    <form class="form" [formGroup]="userReg" (ngSubmit)="regUser(userReg.value)">
         <ng-container>
 
-            <h2>regisztráció</h2>
+            <h2 mat-dialog-title>regisztráció</h2>
 
             <!-- <mat-form-field appearance="standard">
                 <mat-label>vezetéknév</mat-label>
@@ -121,9 +121,9 @@
                 </mat-error>
             </mat-form-field> -->
 
-            <div>
+            <div mat-dialog-actions>
                 <button class="submit-button" [disabled]="userReg.invalid" mat-raised-button
-                    color="primary">regisztrálok</button>
+                    mat-dialog-close cdkFocusInitial color="primary">regisztrálok</button>
             </div>
 
         </ng-container>

@@ -42,13 +42,16 @@ export class AuthService {
   }
 
   refreshUserAuthentication(): Observable<any> {
-    return this.http.post<any>(this.BASE_URL + 'refresh', { token: localStorage.getItem('refreshToken') })
+    return this.http.post<any>(this.BASE_URL + 'refresh', { refreshToken: localStorage.getItem('refreshToken') })
       .pipe(
         tap(
           (res) => {
             if (res) {
               localStorage.setItem('accessToken', res.accessToken);
-              this.userLoggedInObject.next(res.userData);
+              this.userLoggedInObject.next({
+                userId: res._id,
+                role: res.role
+              });
             }
 
           },
@@ -62,11 +65,8 @@ export class AuthService {
   }
 
   logout() {
-    const token = {
-      token: localStorage.getItem('refreshToken')
-    };
 
-    return this.http.post(this.BASE_URL + 'logout', token)
+    return this.http.post(this.BASE_URL + 'logout', { refreshToken: localStorage.getItem('refreshToken') })
       .pipe(
         tap(
           (res) => {

@@ -11,8 +11,6 @@ export class ValidationErrorHandlerService {
 
   getErrorMessage(formName: FormGroup, field: string) {
 
-    console.log(formName)   // debug
-
     if (formName.get(field)?.hasError('required')) {
       return 'Kötelezően kitöltendő mező';
     }
