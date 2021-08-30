@@ -14,11 +14,11 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container" fxLayout="row" fxFlex="100">
+  <mat-sidenav-container class="sidenav-container" fxLayout="row" fxFlex="100" >
    <mat-sidenav #sidenav>
      <mat-nav-list>
        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item>
+       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle() && openLoginDialog()">
          <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
        </a>
        <a (click)="sidenav.toggle()" mat-list-item>

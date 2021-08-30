@@ -29,13 +29,15 @@ $recipe-collection-app-warn: mat.define-palette(mat.$red-palette);
 //   )
 // ));
 
-$recipe-collection-app-theme: mat.define-dark-theme((
-  color: (
-    primary: $recipe-collection-app-primary,
-    accent: $recipe-collection-app-accent,
-    warn: $recipe-collection-app-warn,
-  )
-));
+$recipe-collection-app-theme: mat.define-dark-theme(
+    (
+        color: (
+            primary: $recipe-collection-app-primary,
+            accent: $recipe-collection-app-accent,
+            warn: $recipe-collection-app-warn,
+        ),
+    )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -56,10 +58,40 @@ body {
 }
 
 .snackbar-ok {
-    background: #1B5E20;
+    background: #1b5e20;
     color: whitesmoke;
+    box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.8);
 }
 .snackbar-error {
     background: #610101;
     color: whitesmoke;
+    box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.8);
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form {
+        width: 20em;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1em 0;
+        margin: 0 auto;
+        border-radius: 1em;
+
+        h2 {
+            text-align: center;
+            font-weight: 400;
+        }
+        
+        .submit-button {
+            margin: 3em auto 1em;
+        }
+    }
 }

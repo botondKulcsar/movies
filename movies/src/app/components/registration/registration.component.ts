@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,6 +10,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { ValidationErrorHandlerService } from 'src/app/services/validation-error-handler.service';
 import { matchValidator } from 'src/app/validators/match.validator';
 import { passwordStrengthValidator } from 'src/app/validators/password-strength.validator';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-registration',
@@ -155,6 +157,7 @@ export class RegistrationComponent implements OnInit {
     private httpService: HttpService,
     private authService: AuthService,
     private validErrorHandler: ValidationErrorHandlerService,
+    public dialogRef: MatDialogRef<LoginComponent>,
     private _snackBar: MatSnackBar,
     private router: Router
   ) { }

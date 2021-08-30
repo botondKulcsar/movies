@@ -117,7 +117,7 @@ exports.refresh = async (req, res, next) => {
         }
         )
         res.status(200);
-        res.json({ accessToken });
+        res.json({ accessToken, _id: user._id, role: user.role });
     } catch (error) {
         if (error.message === 'jwt expired') {
             return next(new createError.Forbidden(error.message))
