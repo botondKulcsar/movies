@@ -28,24 +28,24 @@ export class RegistrationComponent implements OnInit {
   numbersOnlyPattern: string | RegExp = '^[0-9]+$';
 
   userReg: FormGroup = new FormGroup({
-    firstName: new FormControl('',
-      {
-        validators: [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.pattern(this.lettersOnlyPattern)
-        ],
-      }
-    ),
-    lastName: new FormControl('',
-      {
-        validators: [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.pattern(this.lettersOnlyPattern)
-        ],
-      }
-    ),
+    // firstName: new FormControl('',
+    //   {
+    //     validators: [
+    //       Validators.required,
+    //       Validators.minLength(2),
+    //       Validators.pattern(this.lettersOnlyPattern)
+    //     ],
+    //   }
+    // ),
+    // lastName: new FormControl('',
+    //   {
+    //     validators: [
+    //       Validators.required,
+    //       Validators.minLength(2),
+    //       Validators.pattern(this.lettersOnlyPattern)
+    //     ],
+    //   }
+    // ),
     nickName: new FormControl('',
       {
         validators: [
@@ -55,30 +55,30 @@ export class RegistrationComponent implements OnInit {
         ],
       }
     ),
-    city: new FormControl('',
-      {
-        validators: [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.pattern(this.lettersOnlyPattern)
-        ]
-      }
-    ),
-    yearOfBirth: new FormControl('',
-      {
-        validators: [
-          Validators.required,
-          Validators.pattern(this.numbersOnlyPattern),
-          Validators.min(new Date().getFullYear() - 120),
-          Validators.max(new Date().getFullYear() - this.ageLimit)
-        ]
-      }
-    ),
-    avatarUrl: new FormControl('',
-      {
-        validators: []
-      }
-    ),
+    // city: new FormControl('',
+    //   {
+    //     validators: [
+    //       Validators.required,
+    //       Validators.minLength(3),
+    //       Validators.pattern(this.lettersOnlyPattern)
+    //     ]
+    //   }
+    // ),
+    // yearOfBirth: new FormControl('',
+    //   {
+    //     validators: [
+    //       Validators.required,
+    //       Validators.pattern(this.numbersOnlyPattern),
+    //       Validators.min(new Date().getFullYear() - 120),
+    //       Validators.max(new Date().getFullYear() - this.ageLimit)
+    //     ]
+    //   }
+    // ),
+    // avatarUrl: new FormControl('',
+    //   {
+    //     validators: []
+    //   }
+    // ),
     email: new FormControl('',
       {
         validators: [
@@ -112,29 +112,29 @@ export class RegistrationComponent implements OnInit {
   {}
   );
 
-  get firstName() {
-    return this.userReg.controls['firstName'] as FormControl;
-  }
+  // get firstName() {
+  //   return this.userReg.controls['firstName'] as FormControl;
+  // }
 
-  get lastName() {
-    return this.userReg.controls['lastName'] as FormControl;
-  }
+  // get lastName() {
+  //   return this.userReg.controls['lastName'] as FormControl;
+  // }
 
   get nickName() {
     return this.userReg.controls['nickName'] as FormControl;
   }
 
-  get city() {
-    return this.userReg.controls['city'] as FormControl;
-  }
+  // get city() {
+  //   return this.userReg.controls['city'] as FormControl;
+  // }
 
-  get yearOfBirth() {
-    return this.userReg.controls['yearOfBirth'] as FormControl;
-  }
+  // get yearOfBirth() {
+  //   return this.userReg.controls['yearOfBirth'] as FormControl;
+  // }
 
-  get avatarUrl() {
-    return this.userReg.controls['avatarUrl'] as FormControl;
-  }
+  // get avatarUrl() {
+  //   return this.userReg.controls['avatarUrl'] as FormControl;
+  // }
 
   get email() {
     return this.userReg.controls['email'] as FormControl;
@@ -157,7 +157,7 @@ export class RegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.userReg);
+    console.log(this.userReg);  // debug
   }
 
   regUser(user: any) {
@@ -199,7 +199,7 @@ export class RegistrationComponent implements OnInit {
       .subscribe(
         () => { },
         (err) => {
-          this._snackBar.open(`Hoppá, nem sikerült bejelentkezni! \nSzerverválasz: ${err.error}\nKód: ${err.status}`,
+          this._snackBar.open(`Hoppá, nem sikerült bejelentkezni! \nSzerverválasz: ${err.error.message}\nKód: ${err.status}`,
             'OK', {
             duration: 5000
           });
