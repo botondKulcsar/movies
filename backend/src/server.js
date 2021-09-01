@@ -9,6 +9,8 @@ const authRouter = require('./controllers/auth/auth.routes');
 const userRouter = require('./controllers/user/user.routes');
 const moviePostRouter = require('./controllers/post/moviePost.routes');
 const adminRouter = require('./controllers/admin/admin.routes');
+const movieRouter = require('./controllers/movie/movie.routes.js')
+
 const adminOnly = require('./controllers/auth/adminOnly');
 
 app.use(cors());
@@ -16,6 +18,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/', authRouter);
+
+app.use('/api/movies', movieRouter);
 
 app.use('/api/users', authenticationByJWT, userRouter);
 app.use('/api/movie-posts', moviePostRouter);
