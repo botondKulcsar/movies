@@ -24,13 +24,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { AngularTiltModule } from 'angular-tilt';
-<<<<<<< HEAD
 import { WelcomeChild1Component } from './components/welcome-child1/welcome-child1.component';
 import { WelcomeChild2Component } from './components/welcome-child2/welcome-child2.component';
 import { WelcomeChild3Component } from './components/welcome-child3/welcome-child3.component';
-=======
 import { MatDialogRef } from '@angular/material/dialog';
->>>>>>> 43a6c59602fbae8f279dacb60fc05e9d88d79786
 
 @NgModule({
   declarations: [
