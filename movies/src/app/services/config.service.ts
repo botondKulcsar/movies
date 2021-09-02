@@ -18,6 +18,7 @@ export class ConfigService {
     {url: '/actors', text: 'Színészek', icon: 'last_page'},
     {url: '/users', text: 'Felhasználóink', icon: 'filter_list'},
     {url: '/registration', text: 'Regisztráció', icon: 'person_add'},
+    {url: '/my-profile', text: 'Profilom', icon: 'create'},
     {url: '/login', text: 'Belépés', icon: 'login'},
     {url: '/admin', text: 'Admin', icon: 'create'},
   ]

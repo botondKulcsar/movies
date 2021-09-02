@@ -28,7 +28,7 @@
   flex-direction: row;
   overflow-x: scroll;
   position: relative;
-
+  padding: 0 30px;
 }
 .genreRow::-webkit-scrollbar {
   display: none;
@@ -115,8 +115,4 @@
   padding-bottom: 15px;
 }
 
-.js-tilt-glare {
-  border: 5px solid yellow !important;
-  border-radius: 10px !important;
-  overflow: hidden;
-}
+

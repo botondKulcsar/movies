@@ -1,1 +1,68 @@
-<p>welcome works!</p>
+<div class="welcome">
+  <div class="login">
+    <button mat-raised-button color="warn" routerLink="/login" class="">Bejelentkezés</button>
+    <button mat-raised-button color="primary" routerLink="/registration" class="">Regisztráció</button>
+
+  </div>
+  <div class="textWrapper">
+    <h1>Üdvözöljük oldalunkon!</h1>
+    <p>Filmbarátok - egy közösségi oldal, ahol a filmek vannak fókuszban!</p>
+  </div>
+  <p></p>
+</div>
+<div class="details">
+  <nav>
+    <div class="iconButton" (click)="child1()"><mat-icon class="icon" ><span class="material-icons-outlined">
+      credit_card_off
+      </span></mat-icon></div>
+    <div class="iconButton" (click)="child2()"><mat-icon class="icon"><span class="material-icons-outlined">
+      post_add
+      </span></mat-icon></div>
+    <div class="iconButton" (click)="child3()"><mat-icon class="icon">format_indent_increase</mat-icon></div>
+  </nav>
+  <app-welcome-child1 *ngIf="child1Component"></app-welcome-child1>
+  <app-welcome-child2 *ngIf="child2Component"></app-welcome-child2>
+  <app-welcome-child3 *ngIf="child3Component"></app-welcome-child3>
+</div>
+<footer class="footer">
+  <div class="">
+    <h2>Partnereink</h2>
+    <ul>
+      <li>
+        <a href="https://www.netflix.com/hu/">Netflix</a>
+      </li>
+      <li>
+        <a href="https://hbogo.hu/">HBO GO</a>
+      </li>
+      <li>
+        <a href="https://tv.apple.com/">Apple+</a>
+      </li>
+      <li>
+        <a href="https://www.imdb.com/">IMDb</a>
+      </li>
+    </ul>
+  </div>
+  <div class="">
+    <h2>Hasznos linkek</h2>
+    <ul>
+      <li>
+        <a href="https://onlinestream.live/tv">Online mozi</a>
+      </li>
+      <li>
+        <a href="https://online-filmek.me//sorozatok/legfrissebb/1">Online sorozatok</a>
+      </li>
+      <li>
+        <a href="https://online-filmek.me/">Online filmek</a>
+      </li>
+    </ul>
+
+  </div>
+  <div class="">
+    <h2>Egyéb fontos információk</h2>
+    <ul>
+      <li>
+        <a routerLink="/">FAQ</a>
+      </li>
+    </ul>
+  </div>
+</footer>
