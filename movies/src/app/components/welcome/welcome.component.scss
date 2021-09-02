@@ -1,0 +1,58 @@
+
+.welcome {
+  height: 100vh;
+  width: 100%;
+  background-image: url('../../../assets/images/moviez.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 0 350px 120px #1d1d1d inset;
+
+}
+.login {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2rem;
+}
+.textWrapper {
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.details nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
+  background-color: #1d1d1d;
+}
+.details nav .icon {
+
+  font-size: 4rem;
+}
+.iconButton {
+  cursor: pointer;
+}
+footer {
+  background-color: #1d1d1d;
+  display: flex;
+  justify-content: space-around;
+}
+footer div ul li{
+  list-style: none;
+}
+footer div ul li a {
+  display: block;
+  text-decoration: none;
+}
+a:visited {
+  color: yellow;
+}

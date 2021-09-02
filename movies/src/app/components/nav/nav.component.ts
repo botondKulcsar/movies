@@ -91,4 +91,11 @@ export class NavComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {});
   }
 
+  clicked(item: any) {
+    console.log(item);
+    if(item.text === 'Kilépés') {
+      console.log('Kiléptem');
+    }
+  }
+
 }
