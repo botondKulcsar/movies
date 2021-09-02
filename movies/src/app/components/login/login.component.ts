@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -37,12 +38,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private validErrorHandler: ValidationErrorHandlerService,
+    public dialogRef: MatDialogRef<LoginComponent>,
+    // @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private _snackBar: MatSnackBar,
     private router: Router
   ) { }
 
   ngOnInit(): void {
   }
+
 
   login(user: UserLogin) {
 
@@ -61,6 +65,7 @@ export class LoginComponent implements OnInit {
           console.error(err);
         },
         () => {
+          this.dialogRef.close();
           this.userLogin.reset();
           this._snackBar.open(`Sikeres belépés`, 'OK', { duration: 2000, panelClass: ['snackbar-ok'] });
           this.router.navigate(['/']);

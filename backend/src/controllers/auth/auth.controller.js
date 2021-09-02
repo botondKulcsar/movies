@@ -8,8 +8,10 @@ const saltRounds = 10;
 
 // register a new customer
 exports.register = async (req, res, next) => {
-    let { firstName, lastName, nickName, city, yearOfBirth, email, password } = req.body;
-    if (!firstName || !lastName || !nickName || !city || !yearOfBirth || !email || !password) {
+    // let { firstName, lastName, nickName, city, yearOfBirth, email, password } = req.body;
+    let { nickName, email, password } = req.body;
+    // if (!firstName || !lastName || !nickName || !city || !yearOfBirth || !email || !password) {
+    if ( !nickName || !email || !password) {
         console.error(`Request body is missing required field(s)`);
         return next(new createError.BadRequest(`Request body is missing required field(s)`));
     }
@@ -21,7 +23,8 @@ exports.register = async (req, res, next) => {
             return next(new createError.BadRequest(`Email is already registered`))
         }
         password = await bcrypt.hash(password, saltRounds);
-        const newUser = await authService.create({ firstName, lastName, nickName, city, yearOfBirth, email, password });
+        // const newUser = await authService.create({ firstName, lastName, nickName, city, yearOfBirth, email, password });
+        const newUser = await authService.create({ nickName, email, password });
         if (!newUser) {
             throw new Error('could not save user')
         }
@@ -114,7 +117,7 @@ exports.refresh = async (req, res, next) => {
         }
         )
         res.status(200);
-        res.json({ accessToken });
+        res.json({ accessToken, _id: user._id, role: user.role });
     } catch (error) {
         if (error.message === 'jwt expired') {
             return next(new createError.Forbidden(error.message))

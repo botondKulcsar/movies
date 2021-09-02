@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 //Layout
@@ -20,8 +21,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatCommonModule } from '@angular/material/core';
 
 const material = [
+  MatCommonModule,
   MatButtonModule,
   MatToolbarModule,
   MatSidenavModule,
@@ -34,8 +37,8 @@ const material = [
   MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule,
-  MatTableModule
-
+  MatTableModule,
+  MatDialogModule
 ]
 
 @NgModule({

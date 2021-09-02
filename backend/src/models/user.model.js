@@ -9,11 +9,11 @@ const UserSchema = new mongoose.Schema({
     },
     firstName: {
         type: String,
-        required: true
+        // required: true
     },
     lastName: {
         type: String,
-        required: true
+        // required: true
     },
     nickName: {
         type: String,
@@ -21,11 +21,11 @@ const UserSchema = new mongoose.Schema({
     },
     city: {
         type: String,
-        required: true
+        // required: true
     },
     yearOfBirth: {
         type: Number,
-        required: true
+        // required: true
     },
     avatarURL: {
         type: String,
