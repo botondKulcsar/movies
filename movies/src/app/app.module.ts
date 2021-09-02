@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -23,8 +23,14 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { UsersTableComponent } from './components/admin/tables/users-table/users-table.component';
 import { AngularTiltModule } from 'angular-tilt';
 import { MatDialogRef } from '@angular/material/dialog';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { PostsTableComponent } from './components/admin/tables/posts-table/posts-table.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,9 @@ import { MatDialogRef } from '@angular/material/dialog';
     RegistrationComponent,
     WelcomeComponent,
     PostsComponent,
-    PostFormComponent
+    PostFormComponent,
+    UsersTableComponent,
+    PostsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -52,13 +60,21 @@ import { MatDialogRef } from '@angular/material/dialog';
     FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularTiltModule
+    AngularTiltModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
 
   ],
   providers: [
     {
       provide: MatDialogRef,
       useValue: {}
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
-  // BASE_URL = environment.apiUrl;
-  BASE_URL = 'http://localhost:3000/';
+  BASE_URL = environment.apiUrl;
+  // BASE_URL = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
 

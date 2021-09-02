@@ -50,6 +50,7 @@ $recipe-collection-app-theme: mat.define-dark-theme(
 html,
 body {
     height: 100%;
+    width: 100%;
 }
 
 body {
@@ -89,7 +90,7 @@ body {
             text-align: center;
             font-weight: 400;
         }
-        
+
         .submit-button {
             margin: 3em auto 1em;
         }

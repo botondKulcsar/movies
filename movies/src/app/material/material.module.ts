@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 //Layout
@@ -38,7 +40,9 @@ const material = [
   MatInputModule,
   MatPaginatorModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTabsModule,
+  MatProgressBarModule
 ]
 
 @NgModule({

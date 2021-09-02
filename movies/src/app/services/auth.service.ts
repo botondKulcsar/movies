@@ -12,7 +12,7 @@ import { UserLogin } from '../model/user-login.model';
 export class AuthService {
 
   BASE_URL = environment.apiUrl;
-  userLoggedInObject: BehaviorSubject<any> = new BehaviorSubject(null);
+  userLoggedInObject: BehaviorSubject<UserLoggedIn | null> = new BehaviorSubject<UserLoggedIn | null>(null);
 
   constructor(private http: HttpClient) { }
 
@@ -27,8 +27,10 @@ export class AuthService {
               localStorage.setItem('refreshToken', loginData.refreshToken);
               this.userLoggedInObject.next(
                 {
-                  userId: loginData._id,
-                  role: loginData.role
+                  _id: loginData._id,
+                  role: loginData.role,
+                  accessToken: loginData.accessToken,
+                  refreshToken: loginData.refreshToken
                 });
             }
           },
@@ -41,7 +43,7 @@ export class AuthService {
       )
   }
 
-  refreshUserAuthentication(): Observable<any> {
+  refreshUserAuthentication(): Observable<UserLoggedIn> {
     return this.http.post<any>(this.BASE_URL + 'refresh', { refreshToken: localStorage.getItem('refreshToken') })
       .pipe(
         tap(
@@ -49,8 +51,10 @@ export class AuthService {
             if (res) {
               localStorage.setItem('accessToken', res.accessToken);
               this.userLoggedInObject.next({
-                userId: res._id,
-                role: res.role
+                _id: res._id,
+                role: res.role,
+                accessToken: res.accessToken,
+                refreshToken: res.refreshToken
               });
             }
 
