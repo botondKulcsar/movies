@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
           this.dialogRef.close();
           this.userLogin.reset();
           this._snackBar.open(`Sikeres belépés`, 'OK', { duration: 2000, panelClass: ['snackbar-ok'] });
-          this.router.navigate(['/']);
+          // this.router.navigate(['/']);
         }
       )
   }

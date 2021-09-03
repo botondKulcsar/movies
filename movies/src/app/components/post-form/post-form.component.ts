@@ -30,7 +30,7 @@ export class PostFormComponent implements OnInit {
     let newPost = this.postForm.value;
     newPost.filmId = this.selectedMovie.id;
     newPost.userId = this.loggedInUser.id;
-    this.httpService.saveNewPost(newPost).subscribe(
+    this.httpService.saveNewMoviePost(newPost).subscribe(
       data => console.log('új post elmentve'),
       error => console.error(error)
     )

@@ -18,7 +18,7 @@
    <mat-sidenav #sidenav>
      <mat-nav-list>
        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle() && openLoginDialog()" (click)="clicked(item)">
+       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle()" (click)="clicked(item)">
          <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
        </a>
        <a (click)="sidenav.toggle()" mat-list-item>

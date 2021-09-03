@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
   constructor(private httpService: HttpService, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.httpService.getPosts().subscribe(
+    this.httpService.getMoviePosts().subscribe(
       (data:any[]) => {this.postList = data; console.log(this.postList)},
       error => console.error(error)
     )

@@ -4,11 +4,12 @@ import { Friends } from "./friends.model";
 import { MarkedAsFriends } from "./marked-as-friends.model";
 
 export class User {
-    firstName: string = '';
-    lastName: string = '';
+    _id: string = ''
+    firstName?: string = '';
+    lastName?: string = '';
     nickName: string = '';
-    city: string = '';
-    yearOfBirth: string = '';
+    city?: string = '';
+    yearOfBirth?: string = '';
     avatarURL?: string = '';
     email: string = '';
     password: string = '';

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -23,11 +23,20 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { UsersTableComponent } from './components/admin/tables/users-table/users-table.component';
 import { AngularTiltModule } from 'angular-tilt';
 import { WelcomeChild1Component } from './components/welcome-child1/welcome-child1.component';
 import { WelcomeChild2Component } from './components/welcome-child2/welcome-child2.component';
 import { WelcomeChild3Component } from './components/welcome-child3/welcome-child3.component';
 import { MatDialogRef } from '@angular/material/dialog';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { ActorPostsTableComponent } from './components/admin/tables/actor-posts-table/actor-posts-table.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MoviePostsTableComponent } from './components/admin/tables/movie-posts-table/movie-posts-table.component';
 
 @NgModule({
   declarations: [
@@ -46,25 +55,38 @@ import { MatDialogRef } from '@angular/material/dialog';
     WelcomeComponent,
     PostsComponent,
     PostFormComponent,
+    UsersTableComponent,
+    ActorPostsTableComponent,
+    MoviePostsTableComponent
     WelcomeChild1Component,
     WelcomeChild2Component,
     WelcomeChild3Component
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    AngularTiltModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularTiltModule
+    MaterialModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [
     {
       provide: MatDialogRef,
       useValue: {}
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

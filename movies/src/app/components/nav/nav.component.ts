@@ -42,6 +42,7 @@ export class NavComponent implements OnInit {
             duration: 5000,
             panelClass: ['snackbar-error']
           });
+          this.openLoginDialog();
         }
       )
     }
@@ -92,9 +93,13 @@ export class NavComponent implements OnInit {
   }
 
   clicked(item: any) {
-    console.log(item);
-    if(item.text === 'Kilépés') {
-      console.log('Kiléptem');
+    switch (item.action) {
+      case 'registration':
+        return this.openRegDialog();
+      case 'login':
+        return this.openLoginDialog();
+      case 'logout':
+        return this.logout();
     }
   }
 

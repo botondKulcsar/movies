@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
-  // BASE_URL = environment.apiUrl;
-  BASE_URL = 'http://localhost:3000/';
+  BASE_URL = environment.apiUrl;
+  // BASE_URL = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
 
@@ -19,11 +19,11 @@ export class HttpService {
   getOneMovie(id: number): Observable<any> {
     return this.http.get(`${this.BASE_URL}movies/${id}`)
   }
-  getPosts(): Observable<any> {
-    return this.http.get(`${this.BASE_URL}posts`)
+  getMoviePosts(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}movie-posts`)
   }
-  saveNewPost(post:any): Observable<any> {
-    return this.http.post(`${this.BASE_URL}posts`, post)
+  saveNewMoviePost(post:any): Observable<any> {
+    return this.http.post(`${this.BASE_URL}movie-posts`, post)
   }
   getUsers(): Observable<any> {
     return this.http.get(`${this.BASE_URL}users`)
