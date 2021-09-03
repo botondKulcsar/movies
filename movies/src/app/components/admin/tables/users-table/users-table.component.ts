@@ -23,10 +23,11 @@ import { MatTableDataSource } from '@angular/material/table';
     ]),
   ],
 })
-export class UsersTableComponent implements AfterViewInit {
+export class UsersTableComponent implements AfterViewInit, OnInit {
 
-  data: User[] = [];
-  dataSource = new MatTableDataSource(this.data);
+  // data: any[] = [];
+  dataSource = new MatTableDataSource<User>();
+  // dataSource: any = [];
   displayedColumns = ['avatar', 'nickName', 'email', 'name', 'city', 'year', 'role', 'edit', 'delete'];
   // displayedColumns = Object.keys(this.dataSource);
   expandedElement!: User | null;
@@ -35,15 +36,24 @@ export class UsersTableComponent implements AfterViewInit {
     private httpService: HttpService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    // private dataSource = new MatTableDataSource()
     ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
+    
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    
+  }
+
+  ngOnInit() {
+
     this.httpService.getUsers().subscribe(
-      (data) => {this.data = data},
+      (data) => {this.dataSource.data = data as User[]},
       (err) => {
         this._snackBar.open(
           `Hoppá, nem sikerült betölteni az adatokat! \n ${err.error.message}\nKód: ${err.status}`,
@@ -60,11 +70,9 @@ export class UsersTableComponent implements AfterViewInit {
         }
       },
     );
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
-  // getData() {
+  // getData(sort: string, order: SortDirection, page: number) {
   //   this.httpService.getUsers().subscribe(
   //     (data) => { this.dataSource = data },
   //     (err) => {

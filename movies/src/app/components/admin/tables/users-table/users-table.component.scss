@@ -1,4 +1,7 @@
-.filter {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -20,6 +23,16 @@ tr.element-row:not(.expanded-row):active {
 
 .element-row td {
   border-bottom-width: 0;
+  // font-size: smaller;
+  font-weight: 300;
+
+  img {
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 .element-detail {
@@ -65,5 +78,6 @@ tr.element-row:not(.expanded-row):active {
   width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   // justify-content: center;
 }
