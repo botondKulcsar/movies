@@ -30,7 +30,10 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { PostsTableComponent } from './components/admin/tables/posts-table/posts-table.component';
+import { ActorPostsTableComponent } from './components/admin/tables/actor-posts-table/actor-posts-table.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MoviePostsTableComponent } from './components/admin/tables/movie-posts-table/movie-posts-table.component';
 
 @NgModule({
   declarations: [
@@ -50,20 +53,23 @@ import { PostsTableComponent } from './components/admin/tables/posts-table/posts
     PostsComponent,
     PostFormComponent,
     UsersTableComponent,
-    PostsTableComponent
+    ActorPostsTableComponent,
+    MoviePostsTableComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    AngularTiltModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularTiltModule,
+    MaterialModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatInputModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [

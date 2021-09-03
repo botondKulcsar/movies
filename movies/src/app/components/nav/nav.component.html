@@ -7,7 +7,7 @@
       <span>Material Design</span>
       <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
-        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-button>
+        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-button (click)="clicked(item)">
           <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
         </a>
       </div>
@@ -18,7 +18,7 @@
    <mat-sidenav #sidenav>
      <mat-nav-list>
        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle() && openLoginDialog()">
+       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle()" (click)="clicked(item)">
          <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
        </a>
        <a (click)="sidenav.toggle()" mat-list-item>
