@@ -75,12 +75,12 @@ export class MoviesComponent implements OnInit, OnDestroy {
   scrollRight() {
     //this.widgetsContent.nativeElement.scrollLeft += this.widgetsContent.nativeElement.scrollWidth;
 
-    this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft += 150), behavior: 'smooth' });
+    this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft + 150), behavior: 'smooth' });
   }
 
   scrollLeft() {
     //this.widgetsContent.nativeElement.scrollLeft -= this.widgetsContent.nativeElement.scrollWidth;
-    this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft -= 150), behavior: 'smooth' });
+    this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 150), behavior: 'smooth' });
   }
 
 

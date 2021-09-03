@@ -4,7 +4,7 @@
       <button mat-icon-button fxShow="true" fxHide.gt-sm (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Material Design</span>
+      <span>Filmbarátok</span>
       <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
         <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-button (click)="clicked(item)">

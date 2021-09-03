@@ -25,6 +25,9 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { UsersTableComponent } from './components/admin/tables/users-table/users-table.component';
 import { AngularTiltModule } from 'angular-tilt';
+import { WelcomeChild1Component } from './components/welcome-child1/welcome-child1.component';
+import { WelcomeChild2Component } from './components/welcome-child2/welcome-child2.component';
+import { WelcomeChild3Component } from './components/welcome-child3/welcome-child3.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { MatTableModule } from '@angular/material/table';
@@ -55,6 +58,9 @@ import { MoviePostsTableComponent } from './components/admin/tables/movie-posts-
     UsersTableComponent,
     ActorPostsTableComponent,
     MoviePostsTableComponent
+    WelcomeChild1Component,
+    WelcomeChild2Component,
+    WelcomeChild3Component
   ],
   imports: [
     AppRoutingModule,
