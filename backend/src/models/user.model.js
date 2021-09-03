@@ -4,7 +4,7 @@ const idValidator = require('mongoose-id-validator');
 const UserSchema = new mongoose.Schema({
     role: {
         type: String,
-        enum: ['user','admin'],
+        enum: ['user', 'admin'],
         default: 'user'
     },
     firstName: {
@@ -41,29 +41,26 @@ const UserSchema = new mongoose.Schema({
     },
     friends: [
         {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         }
     ],
     markedAsFriends: [
-        {
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
-            }
+        { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         }
     ],
-    movieCategories: [ String ],
+    movieCategories: [String],
     favMovies: [
         {
-            _id: String
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Movie'
         }
     ],
     favActors: [
         {
-            _id: String
+            type: String
         }
     ]
 }, { timestamps: true });
