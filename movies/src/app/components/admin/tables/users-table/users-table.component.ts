@@ -47,13 +47,16 @@ export class UsersTableComponent implements AfterViewInit, OnInit {
     
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    
+
   }
 
   ngOnInit() {
 
-    this.httpService.getUsers().subscribe(
-      (data) => {this.dataSource.data = data as User[]},
+    this.httpService.getAdminUsers().subscribe(
+      (data) => {
+        this.dataSource.data = data as User[];
+        console.log('data at usersTable: ', data);    // debug
+      },
       (err) => {
         this._snackBar.open(
           `Hoppá, nem sikerült betölteni az adatokat! \n ${err.error.message}\nKód: ${err.status}`,
@@ -70,6 +73,8 @@ export class UsersTableComponent implements AfterViewInit, OnInit {
         }
       },
     );
+
+    console.log('DataSource at usersTable: ', this.dataSource.data);   // debug
   }
 
   // getData(sort: string, order: SortDirection, page: number) {

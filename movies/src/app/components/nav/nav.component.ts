@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
+import { ThemingService } from 'src/app/services/theming.service';
 import { LoginComponent } from '../login/login.component';
 import { RegistrationComponent } from '../registration/registration.component';
 
@@ -24,19 +25,24 @@ export class NavComponent implements OnInit {
 
   loggedIn = false;
 
+  themes!: string[];
+  theme!: string;
+  isDark: boolean = false;
+  themeMode: string = 'light_mode';
 
   constructor(
     private configService: ConfigService,
     private authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private theming: ThemingService
   ) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('refreshToken')) {
       this.userRefreshSubscription = this.authService.refreshUserAuthentication().subscribe(
-        () => {},
+        () => { },
         (err) => {
           this._snackBar.open(`A munkamenet lejárt, lépj be újra!`, 'OK', {
             duration: 5000,
@@ -56,6 +62,11 @@ export class NavComponent implements OnInit {
       (err) => { },
       () => { }
     )
+
+    this.themes = this.theming.themes;
+    this.theme = this.theming.theme.value;
+    this.isDark = (this.theme === this.themes[1]) ? true : false;
+    this.themeMode = (this.theme === this.themes[1]) ? 'dark_mode' : 'light_mode';
   }
 
   ngOnDestroy(): void {
@@ -83,13 +94,13 @@ export class NavComponent implements OnInit {
   openLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {});
 
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
   openRegDialog(): void {
     const dialogRef = this.dialog.open(RegistrationComponent, {});
 
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
   clicked(item: any) {
@@ -101,6 +112,22 @@ export class NavComponent implements OnInit {
       case 'logout':
         return this.logout();
     }
+  }
+
+  changeTheme() {
+    console.log(this.theme);   // debug
+
+    if (this.theme === this.themes[0]) {
+      this.theme = this.themes[1];
+      this.themeMode = 'dark_mode'
+    } else {
+      this.theme = this.themes[0];
+      this.themeMode = 'light_mode';
+    }
+
+    this.theming.theme.next(this.theme);
+
+    console.log(this.theme, this.themeMode);    // debug
   }
 
 }

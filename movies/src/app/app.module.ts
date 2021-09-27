@@ -57,7 +57,7 @@ import { MoviePostsTableComponent } from './components/admin/tables/movie-posts-
     PostFormComponent,
     UsersTableComponent,
     ActorPostsTableComponent,
-    MoviePostsTableComponent
+    MoviePostsTableComponent,
     WelcomeChild1Component,
     WelcomeChild2Component,
     WelcomeChild3Component

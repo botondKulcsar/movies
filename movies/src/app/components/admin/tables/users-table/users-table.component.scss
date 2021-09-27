@@ -56,8 +56,6 @@ tr.element-row:not(.expanded-row):active {
 //   line-height: normal;
 // }
 
-
-
 // .element-description-attribution {
 //   opacity: 0.5;
 // }
@@ -80,4 +78,25 @@ tr.element-row:not(.expanded-row):active {
   flex-direction: column;
   text-align: center;
   // justify-content: center;
+  .users {
+    display: flex;
+    font-size: small;
+    font-weight: 200;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    div {
+      padding-left: 0.5em;
+    }
+
+    img {
+      height: 2em;
+      width: 2em;
+      margin-right: 0.5em;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
 }

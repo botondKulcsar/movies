@@ -28,6 +28,9 @@ export class HttpService {
   getUsers(): Observable<any> {
     return this.http.get(`${this.BASE_URL}users`)
   }
+  getAdminUsers(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}admin/users`)
+  }
   regNewUser(user: any): Observable<any> {
     return this.http.post(`${this.BASE_URL}register`, user);
   }

@@ -1,7 +1,7 @@
 <div class="welcome">
   <div class="login">
-    <button mat-raised-button color="warn" routerLink="/login" class="">Bejelentkezés</button>
-    <button mat-raised-button color="primary" routerLink="/registration" class="">Regisztráció</button>
+    <button mat-raised-button color="warn" (click)="openLoginDialog()" class="">Bejelentkezés</button>
+    <button mat-raised-button color="primary" (click)="openRegDialog()" class="">Regisztráció</button>
 
   </div>
   <div class="textWrapper">

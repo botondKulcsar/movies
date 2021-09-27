@@ -88,24 +88,27 @@
           <div class="element-params">
             <div class="element-list">
               <h5>favActors</h5>
-              <p *ngFor="let actor of element.favActors">{{actor}}</p>
+              <div *ngFor="let actor of element.favActors">{{actor}}</div>
             </div>
             <div class="element-list">
               <h5>favMovies</h5>
-              <h6 *ngFor="let movie of element.favMovies">{{movie}}</h6>
+              <div *ngFor="let movie of element.favMovies">{{movie}}</div>
             </div>
             <div class="element-list">
               <h5>movieCategories</h5>
-              <p *ngFor="let category of element.movieCategories">{{category}}</p>
+              <div *ngFor="let category of element.movieCategories">{{category}}</div>
             </div>
             <div class="element-list">
               <h5>friends</h5>
-              <h6 *ngFor="let friend of element.friends; index as i">{{friend._id}} {{friend.length}}</h6>
+              <div class="users" *ngFor="let friend of element.friends">
+                <img [src]="friend.avatarURL" alt="avatar">
+                <div>{{friend.nickName}}</div>
+              </div>
             </div>
-            <div class="element-list">
+            <ng-container class="element-list">
               <h5>markedAsFriends</h5>
-              <h6 *ngFor="let markedFriend of element.markedAsFriends">{{markedFriend}}</h6>
-            </div>
+              <div *ngFor="let markedFriend of element.markedAsFriends">{{markedFriend}}</div>
+            </ng-container>
           </div>
         </div>
       </td>
