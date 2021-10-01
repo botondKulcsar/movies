@@ -24,6 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatCommonModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const material = [
   MatCommonModule,
@@ -42,7 +43,8 @@ const material = [
   MatTableModule,
   MatDialogModule,
   MatTabsModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatTooltipModule
 ]
 
 @NgModule({

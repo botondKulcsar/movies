@@ -29,6 +29,7 @@ export class NavComponent implements OnInit {
   theme!: string;
   darkModeOn!: boolean;
   themeMode: string = 'light_mode';
+  themeToolTip!: string;
   themingSubscription!: Subscription;
 
   constructor(
@@ -69,26 +70,29 @@ export class NavComponent implements OnInit {
     this.themingSubscription = this.theming.theme.subscribe(
       (theme) => {
         this.theme = theme;
-        switch (this.theme) {
-          case this.themes[0]:
-            this.themeMode = 'dark_mode'
-            break;
-          case this.themes[1]:
-            this.themeMode = 'light_mode'
-            break;
-          case this.themes[2]:
-            this.themeMode = 'brightness_auto'
-            break;
-        };
+        if (localStorage.getItem('theme') !== 'auto_mode') {
+          switch (this.theme) {
+            case this.themes[0]:
+              this.themeMode = 'dark_mode'
+              break;
+            case this.themes[1]:
+              this.themeMode = 'light_mode'
+              break;
+            case this.themes[2]:
+              this.themeMode = 'brightness_auto'
+              break;
+          };
+        } else {
+          this.themeMode = 'brightness_auto';
+          this.theme = this.themes[2];
+        }
       }
     )
     this.darkModeOn = this.theming.darkModeOn;
 
-
-
-    if (localStorage.getItem('theme') === 'auto_mode') {
-      this.themeMode = 'brightness_auto'
-    }
+    // if (localStorage.getItem('theme') === 'auto_mode') {
+    //   this.themeMode = 'brightness_auto'
+    // }
 
   }
 
@@ -147,20 +151,22 @@ export class NavComponent implements OnInit {
       case this.themes[0]:
         this.theme = this.themes[1];
         this.themeMode = 'light_mode';
+        this.themeToolTip = 'Light Theme';
         localStorage.setItem('theme', this.theme);
         this.theming.theme.next(this.theme);
         break;
       case this.themes[1]:
         this.theme = this.themes[2];
         this.themeMode = 'brightness_auto';
+        this.themeToolTip = 'Auto by OS theme';
         localStorage.setItem('theme', this.theme);
         // this.theming.theme.next(this.theme);
         this.theming.theme.next((this.darkModeOn) ? this.themes[0] : this.themes[1]);
-
         break;
       case this.themes[2]:
         this.theme = this.themes[0];
         this.themeMode = 'dark_mode';
+        this.themeToolTip = 'Dark Theme';
         localStorage.setItem('theme', this.theme);
         this.theming.theme.next(this.theme);
         break;

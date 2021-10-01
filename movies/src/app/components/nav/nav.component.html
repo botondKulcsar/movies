@@ -1,4 +1,4 @@
-<div class="main" fxLayout="column" fxFlexFill >
+<div class="main" fxLayout="column" fxFlexFill>
   <mat-toolbar class="app-toolbar mat-elevation-z6" color="primary">
     <mat-toolbar-row>
       <button mat-icon-button fxShow="true" fxHide.gt-sm (click)="sidenav.toggle()">
@@ -7,30 +7,35 @@
       <span>Filmbarátok</span>
       <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
-        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-button (click)="clickedMenuItem(item)">
+        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-button (click)="clickedMenuItem(item)">
           <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
         </a>
       </div>
       <span style="flex: auto;"></span>
-      <div class="theme-button" (click)="changeTheme()"><mat-icon >{{themeMode}}</mat-icon></div>
-      
+      <button class="theme-button" mat-icon-button [matTooltip]="themeToolTip" matTooltipShowDelay="250"
+        (click)="changeTheme()">
+        <mat-icon>{{themeMode}}</mat-icon>
+      </button>
+
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container" fxLayout="row" fxFlex="100" >
-   <mat-sidenav #sidenav>
-     <mat-nav-list>
-       <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle()" (click)="clickedMenuItem(item)">
-         <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
-       </a>
-       <a (click)="sidenav.toggle()" mat-list-item>
-         <mat-icon>keyboard_arrow_left</mat-icon> Close
-       </a>
-     </mat-nav-list>
-   </mat-sidenav>
-   <mat-sidenav-content fxFlexFill>
-     <router-outlet></router-outlet>
-   </mat-sidenav-content>
+  <mat-sidenav-container class="sidenav-container" fxLayout="row" fxFlex="100">
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a *ngFor="let item of menuItems" [routerLink]="item.url" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: item.url === '/'}" mat-list-item (click)="sidenav.toggle()"
+          (click)="clickedMenuItem(item)">
+          <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon> {{item.text}}
+        </a>
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon>keyboard_arrow_left</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
   </mat-sidenav-container>
- </div>
+</div>
