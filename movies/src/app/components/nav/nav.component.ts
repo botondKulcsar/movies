@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: Router,
     public dialog: MatDialog,
-    private theming: ThemingService
+    private theming: ThemingService,
   ) { }
 
   ngOnInit(): void {
@@ -103,7 +103,8 @@ export class NavComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => { });
   }
 
-  clicked(item: any) {
+  clickedMenuItem(item: any) {
+    
     switch (item.action) {
       case 'registration':
         return this.openRegDialog();
@@ -114,8 +115,7 @@ export class NavComponent implements OnInit {
     }
   }
 
-  changeTheme() {
-    console.log(this.theme);   // debug
+  changeTheme(): void {
 
     if (this.theme === this.themes[0]) {
       this.theme = this.themes[1];
@@ -125,9 +125,10 @@ export class NavComponent implements OnInit {
       this.themeMode = 'light_mode';
     }
 
+    localStorage.setItem('theme', this.theme);
+
     this.theming.theme.next(this.theme);
 
-    console.log(this.theme, this.themeMode);    // debug
   }
 
 }

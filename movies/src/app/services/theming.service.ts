@@ -4,32 +4,37 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ThemingService {
-  themes = ['movie-dark-theme', 'movie-light-theme']; // <- list all themes in this array
-  theme = new BehaviorSubject('movie-light-theme'); // <- initial theme
+  storedTheme: string | null = localStorage.getItem('theme');
+  themes: string[] = ['dark-mode', 'light-mode'];
+  theme: BehaviorSubject<string> = new BehaviorSubject(this.storedTheme || this.themes[1]);
 
   constructor(private ref: ApplicationRef) {
+
+    console.log('storedTheme: ', this.storedTheme);   // debug
+    console.log('theme: ', this.theme);   // debug
+
     // Initially check if dark mode is enabled on system
     const darkModeOn =
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     // If dark mode is enabled then directly switch to the dark-theme
-    if (darkModeOn) {
-      this.theme.next('movie-dark-theme');
+    if (darkModeOn && this.storedTheme !== this.themes[1]) {
+      this.theme.next(this.themes[0]);
     } else {
-      this.theme.next('movie-light-theme');
+      this.theme.next(this.themes[1]);
     }
 
     // Watch for changes of the preference
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       const turnOn = e.matches;
-      this.theme.next(turnOn ? 'movie-dark-theme' : 'movie-light-theme');
-
-      console.log(turnOn);  // debug
+      console.log('matchMedia turnOn: ', turnOn);     // debug
+      this.theme.next(turnOn ? this.themes[0] : this.themes[1]);
 
       // Trigger refresh of UI
       this.ref.tick();
     });
-  }
+  };
 }

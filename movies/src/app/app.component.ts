@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.themingSubscription = this.themingService.theme.subscribe((theme: string) => {
       this.cssClass = theme;
+      console.log('theme from app.component subscription:', theme);   // debug
       this.applyThemeOnOverlays();
     });
   }

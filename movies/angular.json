@@ -13,7 +13,7 @@
           "style": "scss"
         },
         "@schematics/angular:application": {
-          "strict": false
+          "strict": true
         }
       },
       "root": "",
