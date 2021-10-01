@@ -25,9 +25,9 @@ export class NavComponent implements OnInit {
 
   loggedIn = false;
 
-  themes!: string[];
+  themes!: Array<string>;
   theme!: string;
-  isDark: boolean = false;
+  darkModeOn!: boolean;
   themeMode: string = 'light_mode';
 
   constructor(
@@ -65,8 +65,24 @@ export class NavComponent implements OnInit {
 
     this.themes = this.theming.themes;
     this.theme = this.theming.theme.value;
-    this.isDark = (this.theme === this.themes[1]) ? true : false;
-    this.themeMode = (this.theme === this.themes[1]) ? 'dark_mode' : 'light_mode';
+    this.darkModeOn = this.theming.darkModeOn;
+
+    switch (this.theme) {
+      case this.themes[0]:
+        this.themeMode = 'dark_mode'
+        break;
+      case this.themes[1]:
+        this.themeMode = 'light_mode'
+        break;
+      case this.themes[2]:
+        this.themeMode = 'brightness_auto'
+        break;
+    };
+
+    if (localStorage.getItem('theme') === 'auto_mode') {
+      this.themeMode = 'brightness_auto'
+    }
+
   }
 
   ngOnDestroy(): void {
@@ -104,7 +120,7 @@ export class NavComponent implements OnInit {
   }
 
   clickedMenuItem(item: any) {
-    
+
     switch (item.action) {
       case 'registration':
         return this.openRegDialog();
@@ -117,17 +133,30 @@ export class NavComponent implements OnInit {
 
   changeTheme(): void {
 
-    if (this.theme === this.themes[0]) {
-      this.theme = this.themes[1];
-      this.themeMode = 'dark_mode'
-    } else {
-      this.theme = this.themes[0];
-      this.themeMode = 'light_mode';
+    console.log(window.matchMedia('(prefers-color-scheme: dark)'));   // debug
+
+    switch (this.theme) {
+      case this.themes[0]:
+        this.theme = this.themes[1];
+        this.themeMode = 'light_mode';
+        localStorage.setItem('theme', this.theme);
+        this.theming.theme.next(this.theme);
+        break;
+      case this.themes[1]:
+        this.theme = this.themes[2];
+        this.themeMode = 'brightness_auto';
+        localStorage.setItem('theme', this.theme);
+        // this.theming.theme.next(this.theme);
+        this.theming.theme.next((this.darkModeOn) ? this.themes[0] : this.themes[1]);
+
+        break;
+      case this.themes[2]:
+        this.theme = this.themes[0];
+        this.themeMode = 'dark_mode';
+        localStorage.setItem('theme', this.theme);
+        this.theming.theme.next(this.theme);
+        break;
     }
-
-    localStorage.setItem('theme', this.theme);
-
-    this.theming.theme.next(this.theme);
 
   }
 

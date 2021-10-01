@@ -7,8 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 
 export class ThemingService {
   storedTheme: string | null = localStorage.getItem('theme');
-  themes: string[] = ['dark-mode', 'light-mode'];
-  theme: BehaviorSubject<string> = new BehaviorSubject(this.storedTheme || this.themes[1]);
+  themes: string[] = ['dark-mode', 'light-mode', 'auto_mode'];
+  theme: BehaviorSubject<string> = new BehaviorSubject(this.storedTheme || this.themes[0]);
+  darkModeOn: boolean;
 
   constructor(private ref: ApplicationRef) {
 
@@ -16,15 +17,25 @@ export class ThemingService {
     console.log('theme: ', this.theme);   // debug
 
     // Initially check if dark mode is enabled on system
-    const darkModeOn =
+    this.darkModeOn =
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    // If dark mode is enabled then directly switch to the dark-theme
-    if (darkModeOn && this.storedTheme !== this.themes[1]) {
-      this.theme.next(this.themes[0]);
+    if (this.storedTheme) {
+      switch (this.storedTheme) {
+        case this.themes[0]:
+          this.theme.next(this.themes[0]);
+          break;
+        case this.themes[1]:
+          this.theme.next(this.themes[1]);
+          break;
+        case this.themes[2]:
+          this.theme.next((this.darkModeOn) ? this.themes[0] : this.themes[1])
+          break;
+      }
     } else {
-      this.theme.next(this.themes[1]);
+      // If dark mode is enabled and theme not stored then directly switch to the dark-theme
+      this.theme.next((this.darkModeOn) ? this.themes[0]: this.themes[1])
     }
 
     // Watch for changes of the preference

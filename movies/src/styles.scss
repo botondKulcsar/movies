@@ -1,6 +1,6 @@
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 @include mat.core();
 
@@ -30,14 +30,6 @@ $movie-dark-theme: mat.define-dark-theme(
 
 // @include mat.all-component-themes($movie-dark-theme);
 
-// @media (prefers-color-scheme: light) {
-//     @include mat.all-component-themes($movie-light-theme);
-// }
-
-// @media (prefers-color-scheme: dark) {
-//     @include mat.all-component-themes($movie-dark-theme);
-// }
-
 .dark-mode {
     @include mat.all-component-themes($movie-dark-theme);
 }
@@ -46,6 +38,15 @@ $movie-dark-theme: mat.define-dark-theme(
     @include mat.all-component-themes($movie-light-theme);
 }
 
+// .auto-mode {
+//     @media (prefers-color-scheme: light) {
+//         @include mat.all-component-themes($movie-light-theme);
+//     }
+
+//     @media (prefers-color-scheme: dark) {
+//         @include mat.all-component-themes($movie-dark-theme);
+//     }
+// }
 
 html,
 body {
@@ -97,5 +98,11 @@ body {
     }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
