@@ -29,6 +29,7 @@ export class NavComponent implements OnInit {
   theme!: string;
   darkModeOn!: boolean;
   themeMode: string = 'light_mode';
+  themingSubscription!: Subscription;
 
   constructor(
     private configService: ConfigService,
@@ -64,20 +65,26 @@ export class NavComponent implements OnInit {
     )
 
     this.themes = this.theming.themes;
-    this.theme = this.theming.theme.value;
+    // this.theme = this.theming.theme.value;
+    this.themingSubscription = this.theming.theme.subscribe(
+      (theme) => {
+        this.theme = theme;
+        switch (this.theme) {
+          case this.themes[0]:
+            this.themeMode = 'dark_mode'
+            break;
+          case this.themes[1]:
+            this.themeMode = 'light_mode'
+            break;
+          case this.themes[2]:
+            this.themeMode = 'brightness_auto'
+            break;
+        };
+      }
+    )
     this.darkModeOn = this.theming.darkModeOn;
 
-    switch (this.theme) {
-      case this.themes[0]:
-        this.themeMode = 'dark_mode'
-        break;
-      case this.themes[1]:
-        this.themeMode = 'light_mode'
-        break;
-      case this.themes[2]:
-        this.themeMode = 'brightness_auto'
-        break;
-    };
+
 
     if (localStorage.getItem('theme') === 'auto_mode') {
       this.themeMode = 'brightness_auto'
@@ -90,6 +97,7 @@ export class NavComponent implements OnInit {
     if (this.userLogoutSubscription) this.userLogoutSubscription.unsubscribe();
     if (this.userRefreshSubscription) this.userRefreshSubscription.unsubscribe();
     if (this.userSignInSubscription) this.userSignInSubscription.unsubscribe();
+    if (this.themingSubscription) this.themingSubscription.unsubscribe();
 
   }
 
